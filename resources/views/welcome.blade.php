@@ -1,10 +1,15 @@
 <!DOCTYPE html>
+@extends('layouts.app')
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--csrf -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Laravel</title>
+        <!--Vuejs -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -93,6 +98,12 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+                <div id="app" class="ui">
+                    @section('content')
+                    <example-component></example-component>
+                    @endsection
+                </div>
+
             </div>
         </div>
     </body>
