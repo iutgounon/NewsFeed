@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-        <h1>News Feed</h1>
+        <h1 class="mt-3 mb-3">News Feed</h1>
         <section v-if="errored" >
             <p>Je suis désolé, je n'ai pas pu récuperer ces informations.</p>
         </section>
@@ -11,6 +11,7 @@
                 <div
                 v-else
                 v-for="article in info"
+                v-bind:key="article.title"
                 class="card mb-2 border-dark"
                 style=";"
                 >
@@ -25,8 +26,19 @@
                                 <p class="card-text pb-4">{{article.description}}</p>
                                 <p class="card-text" v-if="article.author != null"> Written by {{article.author}}</p>
                             </div>
+
                             <div class="card-footer bg-white align-self-end ">
-                                <i class="far fa-star "></i>
+                                <form method="post" action="">
+                                    <input type="hidden" :value="propMessage" name="user_id"/>
+                                    <input type="hidden" :value="article.title" name="title"/>
+                                    <input type="hidden" :value="article.description" name="description"/>
+                                    <input type="hidden" :value="article.author" name="author"/>
+                                    <input type="hidden" :value="article.urlToImage" name="urlToImage"/>
+                                    <input type="hidden" :value="article.url" name="url"/>
+
+                                    <button type="submit" class="btn btn-info"><i class="far fa-star "></i></button>
+                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -36,9 +48,10 @@
 </template>
 
 <script type="text/babel" >
-    import axios from 'axios'
+    import axios from 'axios/index'
 
     export default {
+        props:['propMessage'],
         data () {
             return {
                 info: '',

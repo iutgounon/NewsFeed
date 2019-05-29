@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
-
-const axios = require('axios');
+import routes from './routes'
 
 /* eslint-disable */
 Vue.config.productionTip = false
 
 new Vue({
+
   render: h => h(App),
 }).$mount('#app')
 

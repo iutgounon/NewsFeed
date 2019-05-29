@@ -13,7 +13,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
         <!-- Styles -->
         <style>
             html, body {
@@ -21,12 +21,12 @@
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
+
                 margin: 0;
             }
 
             .full-height {
-                height: 100vh;
+
             }
 
             .flex-center {
@@ -69,42 +69,47 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+<!--        <div class="flex-center position-ref full-height">-->
+<!--            @if (Route::has('login'))-->
+<!--                <div class="top-right links">-->
+<!--                    @auth-->
+<!--                        <a href="{{ url('/home') }}">Home</a>-->
+<!--                    @else-->
+<!--                        <a href="{{ route('login') }}">Login</a>-->
+<!---->
+<!--                        @if (Route::has('register'))-->
+<!--                            <a href="{{ route('register') }}">Register</a>-->
+<!--                        @endif-->
+<!--                    @endauth-->
+<!--                </div>-->
+<!--            @endif-->
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+<!--            <div class="content">-->
+<!--                <div class="title m-b-md">-->
+<!--                    Laravel-->
+<!--                </div>-->
+<!---->
+<!--                <div class="links">-->
+<!--                    <a href="https://laravel.com/docs">Docs</a>-->
+<!--                    <a href="https://laracasts.com">Laracasts</a>-->
+<!--                    <a href="https://laravel-news.com">News</a>-->
+<!--                    <a href="https://blog.laravel.com">Blog</a>-->
+<!--                    <a href="https://nova.laravel.com">Nova</a>-->
+<!--                    <a href="https://forge.laravel.com">Forge</a>-->
+<!--                    <a href="https://github.com/laravel/laravel">GitHub</a>-->
+<!--                </div>-->
+<!---->
+<!---->
+<!--            </div>-->
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-                <div id="app" class="ui">
-                    @section('content')
-                    <example-component></example-component>
-                    @endsection
-                </div>
 
-            </div>
+
+
+
         </div>
+
+
     </body>
+
 </html>

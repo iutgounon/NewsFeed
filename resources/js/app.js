@@ -20,7 +20,7 @@ window.axios = require('axios');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('feed', require('./components/feed.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,19 +30,30 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 
 
-const app = new Vue({
-    el: '#app',
-    data () {
-        return {
-            info: '',
-            loading: true,
-            errored: false
-        }
-    },
+import Vue from 'vue'
+import Feed from './components/feed.vue'
+import Favorite from './components/fav.vue'
+
+/* eslint-disable */
+Vue.config.productionTip = false
+
+
+
+const feed = new Vue({
+    props:['propMessage'],
+    el:'#feed',
+
     mounted(){
-        axios.get('https://newsapi.org/v2/everything?sources=bbc-news&apiKey=60bfaf62fd794a8f8f60f8df42762cae')
-            .then(response => (this.info = response.data))
-            .catch(error => console.log(error))
-            .finally(() => this.loading = false)
-    }
-});
+        console.dir(this.propMessage)
+
+    },
+    // render: h => h(Feed),
+
+})
+
+new Vue({
+
+    render:h => h(Favorite),
+
+}).$mount ('#fav')
+

@@ -16,11 +16,16 @@ Route::get('/', function () {
 });
 
 Route::get('/vue', function () {
-    return view('ExampleComponent.vue');
+    return view('index.html');
 });
 
+
+Route::get('favorites/{id}','FavoritesController@index')->name('favorites');
+Route::resource('Favorites','FavoritesController');
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
