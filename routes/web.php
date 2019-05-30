@@ -20,7 +20,11 @@ Route::get('/vue', function () {
 });
 
 
-Route::get('favorites/{id}','FavoritesController@index')->name('favorites');
+Route::post('/favorites/store','FavoritesController@store')->name('store_favorites');
+
+
+
+Route::get('/favorites/{id}','FavoritesController@index')->name('favorites');
 Route::resource('Favorites','FavoritesController');
 
 

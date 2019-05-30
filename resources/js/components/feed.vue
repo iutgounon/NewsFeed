@@ -19,7 +19,7 @@
 <!--            </form>-->
 <!--        </div>-->
 <!--    </nav>-->
-        {{this.propMessage}}Hello
+        {{propMessage}}Hello
         <FirstPage :prop-message = 'this.propMessage'  />
 
   </div>

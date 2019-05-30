@@ -47,7 +47,7 @@ const feed = new Vue({
         console.dir(this.propMessage)
 
     },
-    // render: h => h(Feed),
+     // render: h => h(Feed),
 
 })
 

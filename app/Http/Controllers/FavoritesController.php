@@ -40,6 +40,20 @@ class FavoritesController extends Controller
     {
         //
 
+        $favorites = new Favorites([
+            'user_id' => $request->get('user_id'),
+            'title' => $request->get('title'),
+            'description' => $request->get('description'),
+            'urlToImage' => $request->get('urlToImage'),
+            'url' => $request->get('url'),
+            'author' => $request->get('author')
+        ]);
+
+        $favorites->save();
+        $data = Favorites::where('user_id', '=',$request->get('user_id'))->get();
+        return view('favorites')->with('favorites',$data);
+
+
 
     }
 

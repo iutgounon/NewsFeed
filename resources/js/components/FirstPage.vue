@@ -28,7 +28,8 @@
                             </div>
 
                             <div class="card-footer bg-white align-self-end ">
-                                <form method="post" action="">
+                                <form method="post" action="/favorites/store">
+                                    <input type="hidden" name="_token" :value="csrf">
                                     <input type="hidden" :value="propMessage" name="user_id"/>
                                     <input type="hidden" :value="article.title" name="title"/>
                                     <input type="hidden" :value="article.description" name="description"/>
@@ -54,6 +55,7 @@
         props:['propMessage'],
         data () {
             return {
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 info: '',
                 loading: true,
                 errored: false

@@ -1874,11 +1874,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['propMessage'],
   data: function data() {
     return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       info: '',
       loading: true,
       errored: false
@@ -38104,8 +38106,18 @@ var render = function() {
                             [
                               _c(
                                 "form",
-                                { attrs: { method: "post", action: "" } },
+                                {
+                                  attrs: {
+                                    method: "post",
+                                    action: "/favorites/store"
+                                  }
+                                },
                                 [
+                                  _c("input", {
+                                    attrs: { type: "hidden", name: "_token" },
+                                    domProps: { value: _vm.csrf }
+                                  }),
+                                  _vm._v(" "),
                                   _c("input", {
                                     attrs: { type: "hidden", name: "user_id" },
                                     domProps: { value: _vm.propMessage }
@@ -38223,7 +38235,7 @@ var render = function() {
     "div",
     { attrs: { id: "feed" } },
     [
-      _vm._v("\n        " + _vm._s(this.propMessage) + "Hello\n        "),
+      _vm._v("\n        " + _vm._s(_vm.propMessage) + "Hello\n        "),
       _c("FirstPage", { attrs: { "prop-message": this.propMessage } })
     ],
     1

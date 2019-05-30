@@ -84,12 +84,14 @@
 
             @guest
             @if (Route::has('register'))
-            <div propMessage="oui" id="feed"  >
-
+            <div  id="feed"  >
+                <feed></feed>
+            </div>
             @endif
             @else
 
                 <div id="feed">
+                    {{csrf_field()}}
                     <feed :prop-message="'{{ Auth::user()->id }}'"></feed>
                 </div>
 
