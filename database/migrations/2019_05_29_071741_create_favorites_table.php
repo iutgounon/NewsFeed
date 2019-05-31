@@ -19,7 +19,7 @@ class CreateFavoritesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('urlToImage');
             $table->string('title');
-            $table->string('author');
+            $table->string('author')->nullable();
             $table->string('url');
             $table->mediumText('description');
             $table->timestamps();

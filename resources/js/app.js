@@ -22,6 +22,7 @@ window.axios = require('axios');
 
 Vue.component('feed', require('./components/feed.vue').default);
 
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -31,29 +32,15 @@ Vue.component('feed', require('./components/feed.vue').default);
 
 
 import Vue from 'vue'
-import Feed from './components/feed.vue'
-import Favorite from './components/fav.vue'
 
 /* eslint-disable */
 Vue.config.productionTip = false
 
-
-
-const feed = new Vue({
+// Create a Vue that will attach to a div with id="feed" and accept a propMessage
+new Vue({
     props:['propMessage'],
     el:'#feed',
 
-    mounted(){
-        console.dir(this.propMessage)
+});
 
-    },
-     // render: h => h(Feed),
-
-})
-
-new Vue({
-
-    render:h => h(Favorite),
-
-}).$mount ('#fav')
 

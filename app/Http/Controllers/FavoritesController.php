@@ -51,6 +51,7 @@ class FavoritesController extends Controller
 
         $favorites->save();
         $data = Favorites::where('user_id', '=',$request->get('user_id'))->get();
+//        Return to the favorites page
         return view('favorites')->with('favorites',$data);
 
 
@@ -99,6 +100,11 @@ class FavoritesController extends Controller
      */
     public function destroy($id)
     {
+
+        $favorite = Favorites::find($id);
+        $favorite->delete();
+//      redirect to home page
+        return redirect()->route('welcome');
         //
     }
 }

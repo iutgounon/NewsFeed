@@ -2,11 +2,11 @@
     <div class="container-fluid">
         <h1 class="mt-3 mb-3">News Feed</h1>
         <section v-if="errored" >
-            <p>Je suis désolé, je n'ai pas pu récuperer ces informations.</p>
+            <p>Sorry, I could not load the data.</p>
         </section>
         <section v-else>
             <div v-if="loading">
-                Chargement...
+                Loading ...
             </div>
                 <div
                 v-else
@@ -27,7 +27,7 @@
                                 <p class="card-text" v-if="article.author != null"> Written by {{article.author}}</p>
                             </div>
 
-                            <div class="card-footer bg-white align-self-end ">
+                            <div v-if="propMessage != null" class="card-footer bg-white align-self-end ">
                                 <form method="post" action="/favorites/store">
                                     <input type="hidden" name="_token" :value="csrf">
                                     <input type="hidden" :value="propMessage" name="user_id"/>

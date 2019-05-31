@@ -11,25 +11,21 @@
 |
 */
 
+// Display home page. Feed with news from CNN or other source.
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::get('/vue', function () {
-    return view('index.html');
-});
+})->name('welcome');
 
 
+// Insert a new favorite into DB.
 Route::post('/favorites/store','FavoritesController@store')->name('store_favorites');
 
 
-
+// Display user's favorites news.
 Route::get('/favorites/{id}','FavoritesController@index')->name('favorites');
 Route::resource('Favorites','FavoritesController');
 
 
+
+
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
