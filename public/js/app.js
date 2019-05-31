@@ -1815,6 +1815,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['propMessage'],
@@ -1823,18 +1830,47 @@ __webpack_require__.r(__webpack_exports__);
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       info: '',
       loading: true,
-      errored: false
+      errored: false,
+      source: 'cnn',
+      options: [{
+        text: 'Cnn',
+        value: 'cnn'
+      }, {
+        text: 'Abc News',
+        value: 'abc-news'
+      }, {
+        text: 'Google News',
+        value: 'google-news'
+      }, {
+        text: "L'équipe",
+        value: 'lequipe'
+      }]
     };
   },
-  created: function created() {
-    var _this = this;
+  watch: {
+    // whenever source changes, this function will run
+    source: function source(newSource) {
+      var _this = this;
+
+      this.source = newSource;
+      axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://newsapi.org/v2/top-headlines?sources=' + this.source + '&apiKey=60bfaf62fd794a8f8f60f8df42762cae').then(function (response) {
+        return _this.info = response.data.articles;
+      })["catch"](function (error) {
+        return console.log(error);
+      })["finally"](function () {
+        return _this.loading = false;
+      });
+    }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
 
     axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://newsapi.org/v2/top-headlines?sources=cnn&apiKey=60bfaf62fd794a8f8f60f8df42762cae').then(function (response) {
-      return _this.info = response.data.articles;
+      return _this2.info = response.data.articles;
     })["catch"](function (error) {
       return console.log(error);
     })["finally"](function () {
-      return _this.loading = false;
+      return _this2.loading = false;
     });
   }
 });
@@ -37822,8 +37858,52 @@ var render = function() {
       : _c(
           "section",
           [
+            _c("div", { staticClass: "text-left dropdown" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.source,
+                      expression: "source"
+                    }
+                  ],
+                  key: _vm.source,
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.source = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                _vm._l(_vm.options, function(option) {
+                  return _c("option", { domProps: { value: option.value } }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(option.text) +
+                        "\n                    "
+                    )
+                  ])
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
             _vm.loading
-              ? _c("div", [_vm._v("\n            Loading ...\n        ")])
+              ? _c("div", [
+                  _vm._v("\n                Loading ...\n            ")
+                ])
               : _vm._l(_vm.info, function(article) {
                   return _c(
                     "div",
@@ -37834,9 +37914,10 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "row no-gutters d-flex " }, [
-                        _c("div", { staticClass: "col-md-4 " }, [
+                        _c("div", { staticClass: "col-md-4" }, [
                           _c("img", {
                             staticClass: "card-img-top",
+                            staticStyle: { height: "100%" },
                             attrs: {
                               src: article.urlToImage,
                               alt: article.title

@@ -17,12 +17,12 @@ Route::get('/', function () {
 })->name('welcome');
 
 
-// Insert a new favorite into DB.
-Route::post('/favorites/store','FavoritesController@store')->name('store_favorites');
+// Insert a new favorite into DB. Can't access the route without being logged if not logged redirect to login page
+Route::post('/favorites/store','FavoritesController@store')->name('store_favorites')->middleware('auth');
 
 
-// Display user's favorites news.
-Route::get('/favorites/{id}','FavoritesController@index')->name('favorites');
+// Display user's favorites news. Can't access the route without being logged if not logged redirect to login page
+Route::get('/favorites/{id}','FavoritesController@index')->name('favorites')->middleware('auth');
 Route::resource('Favorites','FavoritesController');
 
 
