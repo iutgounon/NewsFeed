@@ -16,7 +16,7 @@ class FavoritesController extends Controller
     public function index($id)
     {
         // Get favorites from db with the user_id
-        $favorites = Favorites::where('user_id', '=',$id)->paginate(6);
+        $favorites = Favorites::where('user_id', '=',$id)->orderBy('created_at','desc')->paginate(6);
 
         return view('favorites')->with('favorites',$favorites);
     }
@@ -39,6 +39,23 @@ class FavoritesController extends Controller
      */
     public function store(Request $request)
     {
+
+        //Check if the favorite already exist
+
+        $check = Favorites::where([
+            ['user_id', '=',$request->get('user_id')],
+            ['url', '=' ,$request->get('url')]
+
+        ]);
+
+        //If it exist just redirect to home page with error message
+
+        if($check->first('url') !== null ){
+            return redirect()->route('welcome')->with('message',"Sorry but you have already this article in your Favorites articles.");
+
+        }
+
+
         //Create a Favorite
 
         $favorites = new Favorites([

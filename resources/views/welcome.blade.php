@@ -37,6 +37,10 @@
         </style>
     </head>
     <body>
+    <div class="alert-danger">
+        {{session('message')}}
+
+    </div>
 
 <!--    Extends App Layout-->
 
