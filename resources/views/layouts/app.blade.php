@@ -12,7 +12,7 @@
 
     <title>{{ config('app.name', 'News Feed') }}</title>
 
-    <!-- Scripts -->
+    <!-- Scripts -->    
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
