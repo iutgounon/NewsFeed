@@ -37,10 +37,12 @@
         </style>
     </head>
     <body>
-    <div class="alert-danger">
-        {{session('message')}}
 
-    </div>
+<!--    Message when you try to favorite an article you already have in your favorites-->
+        <div class="alert-danger">
+            {{session('message')}}
+        </div>
+
 
 <!--    Extends App Layout-->
 

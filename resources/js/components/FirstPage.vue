@@ -15,10 +15,13 @@
                     </option>
                 </select>
             </div>
-<!--Waiting for the Axios Request-->
+
+
+<!--        Waiting for the Axios Request-->
             <div v-if="loading">
                 Loading ...
             </div>
+
 <!--            We now have the Axios request so we can display some news with Bootstrap card element-->
             <div v-else
                 v-for="article in info"
@@ -80,7 +83,7 @@
             // whenever source changes, this function will run
             source: function (newSource) {
                 this.source = newSource
-                axios.get('https://newsapi.org/v2/top-headlines?sources='+this.source+'&apiKey=60bfaf62fd794a8f8f60f8df42762cae')
+                axios.get('https://newsapi.org/v2/top-headlines?sources=' + this.source + '&apiKey=60bfaf62fd794a8f8f60f8df42762cae')
                     .then(response => (this.info = response.data.articles))
                     .catch(error => console.log(error))
                     .finally(() => this.loading = false)

@@ -84,12 +84,13 @@
 <!--        Case where there is no user logged-->
                 <div  id="feed"  >
 <!--                    Call Vue feed.vue without data-->
-                    <feed></feed>
+                    <feed ></feed>
                 </div>
             @endif
 
             @else
 <!--        Case where there is a user logged. We pass to Vue the user_id -->
+
 
                 <div id="feed">
 <!--                    Call Vue feed.vue and pass the data propMessage allowing me to use it with Vue-->

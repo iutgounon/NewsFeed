@@ -1,7 +1,7 @@
 <template>
     <div id="feed">
 <!--        Call Vue FirstPage with the propMessage-->
-        <FirstPage :prop-message = 'this.propMessage'/>
+        <FirstPage :prop-message = 'this.propMessage'    />
     </div>
 
 </template>
