@@ -10,13 +10,14 @@ class FavoritesController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function index($id)
     {
-        //
-        $favorites = Favorites::where('user_id', '=',$id)->get();
+        // Get favorites from db with the user_id
+        $favorites = Favorites::where('user_id', '=',$id)->paginate(6);
+
         return view('favorites')->with('favorites',$favorites);
     }
 
@@ -38,7 +39,7 @@ class FavoritesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Create a Favorite
 
         $favorites = new Favorites([
             'user_id' => $request->get('user_id'),
@@ -49,10 +50,12 @@ class FavoritesController extends Controller
             'author' => $request->get('author')
         ]);
 
+        // Save data into DB
         $favorites->save();
-        $data = Favorites::where('user_id', '=',$request->get('user_id'))->get();
-//        Return to the favorites page
-        return view('favorites')->with('favorites',$data);
+
+        // Return to the favorites page
+        return redirect()->route('favorites',['id' => $request->get('user_id')]);
+
 
 
 
@@ -103,8 +106,9 @@ class FavoritesController extends Controller
 
         $favorite = Favorites::find($id);
         $favorite->delete();
-//      redirect to home page
+
+        // redirect to home page
         return redirect()->route('welcome');
-        //
+
     }
 }
